@@ -1,18 +1,12 @@
-$("#botao-placar").click(mostraPlacar);
-
-function mostraPlacar() {
-    $(".placar").stop().slideToggle(600);
-}
-
 function inserePlacar() {
     var corpoTabela = $(".placar").find("tbody");
-    var usuario = "marcelo";
+    var usuario = "Douglas"
     var numPalavras = $("#contador-palavras").text();
-    var linha = novaLinha(usuario, numPalavras);
 
+    var linha = novaLinha(usuario, numPalavras);
     linha.find(".botao-remover").click(removeLinha);
 
-    corpoTabela.prepend(linha);
+    corpoTabela.append(linha);
 }
 
 function novaLinha(usuario, palavras) {
@@ -21,7 +15,7 @@ function novaLinha(usuario, palavras) {
     var colunaPalavras = $("<td>").text(palavras);
     var colunaRemover = $("<td>");
 
-    var link = $("<a>").attr("href", "#").addClass("botao-remover");
+    var link = $("<a>").addClass("botao-remover").attr("href", "#");
     var icone = $("<i>").addClass("small").addClass("material-icons").text("delete");
 
     link.append(icone);
@@ -35,13 +29,7 @@ function novaLinha(usuario, palavras) {
     return linha;
 }
 
-function removeLinha(event) {
+function removeLinha() {
     event.preventDefault();
-
-    var linha = $(this).parent().parent().remove();
-
-    linha.fadeOut(1000);
-    setTimeout(function () {
-        linha.remove();
-    }, 1000)
+    $(this).parent().parent().remove();
 }
